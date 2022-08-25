@@ -35,7 +35,7 @@ public class PatientController {
     @PostMapping("/addPatient")
     public ResponseEntity<?> addPatient(@Valid @RequestBody IgnoreRequest.AddPatient request) {
         try {
-            Users user = userRepository.findById(request.getUser_id()).orElse(null);
+            Users user = userRepository.findById(request.getUserId()).orElse(null);
             patientRepository.save(Consts.patientWithoutList(request, user));
             return CommonResponse.success("Admin Registered");
         } catch (Exception e) {
@@ -46,7 +46,7 @@ public class PatientController {
     @PutMapping("/editPatient")
     public ResponseEntity<?> editPatient(@Valid @RequestBody IgnoreRequest.EditPatient request) {
         try {
-            Users user = userRepository.findById(request.getUser_id()).orElse(null);
+            Users user = userRepository.findById(request.getUserId()).orElse(null);
             patientRepository.save(Consts.patientWithoutList(request, user));
             return CommonResponse.success("Admin Registered");
         } catch (Exception e) {
@@ -77,19 +77,19 @@ public class PatientController {
     }
 
 
-    @DeleteMapping("/deletePatientById/{patient_id}")
-    public ResponseEntity<Object> deletePatientById(@PathVariable Long patient_id) {
+    @DeleteMapping("/deletePatientById/{patientId}")
+    public ResponseEntity<Object> deletePatientById(@PathVariable Long patientId) {
         try {
-            patientRepository.deleteById(patient_id);
+            patientRepository.deleteById(patientId);
             return CommonResponse.success("Patient Deleted");
         } catch (Exception e) {
             return CommonResponse.fail(e.getMessage());
         }
     }
-    @GetMapping("/getPatientById/{patient_id}")
-    public ResponseEntity<?> getPatientById(@PathVariable Long patient_id) {
+    @GetMapping("/getPatientById/{patientId}")
+    public ResponseEntity<?> getPatientById(@PathVariable Long patientId) {
         try {
-            Patients patients = patientRepository.findById(patient_id).orElse(null);
+            Patients patients = patientRepository.findById(patientId).orElse(null);
             return CommonResponse.common("OK", HttpStatus.OK, patients);
         } catch (Exception e) {
             return CommonResponse.fail(e.getMessage());

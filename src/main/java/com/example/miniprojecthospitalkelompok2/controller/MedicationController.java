@@ -48,10 +48,10 @@ public class MedicationController {
     }
 
 
-    @DeleteMapping("/deleteMedicationById/{medication_id}")
-    public ResponseEntity<Object> deleteMedicationById(@PathVariable Long medication_id) {
+    @DeleteMapping("/deleteMedicationById/{medicationId}")
+    public ResponseEntity<Object> deleteMedicationById(@PathVariable Long medicationId) {
         try {
-            medicationRepository.deleteById(medication_id);
+            medicationRepository.deleteById(medicationId);
             return CommonResponse.success("Medication Deleted");
         } catch (Exception e) {
             return CommonResponse.fail(e.getMessage());

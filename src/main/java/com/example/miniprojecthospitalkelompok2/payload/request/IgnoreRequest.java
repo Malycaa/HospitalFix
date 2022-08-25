@@ -5,28 +5,28 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 public class IgnoreRequest {
 
-    @JsonIgnoreProperties({"user_id", "role"})
+    @JsonIgnoreProperties({"userId", "role"})
     public static class AddAdmin extends AdminRequest {}
     
     @JsonIgnoreProperties("role")
     public static class EditAdmin extends AdminRequest {}
 
-    @JsonIgnoreProperties({"patient_id", "registrationDate"})
+    @JsonIgnoreProperties({"patientId", "registrationDate"})
     public static class AddPatient extends PatientRequest {}
 
     @JsonIgnoreProperties({"registrationDate"})
     public static class EditPatient extends PatientRequest {}
 
-    @JsonIgnoreProperties({"medication_id"})
+    @JsonIgnoreProperties({"medicationId"})
     public static class AddMedication extends MedicationRequest {}
 
     public static class EditMedication extends MedicationRequest {}
 
-    @JsonIgnoreProperties({"medication_name", "medication_dose"})
+    @JsonIgnoreProperties({"medicationName", "medicationDose"})
     public static class MedicationTreatment extends Medication {}
 
 
-    @JsonIgnoreProperties({"treatment_id"})
+    @JsonIgnoreProperties({"treatmentId"})
     public static class AddTreatment extends TreatmentRequest {}
     
     public static class EditTreatment extends TreatmentRequest {}

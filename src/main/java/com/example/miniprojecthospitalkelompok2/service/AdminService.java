@@ -12,6 +12,6 @@ public class AdminService {
     AdminRepository repository;
 
     public List<Users> inquiryUsers(AdminConvert param) {
-        return repository.findAdminByUsername(param);
+        return repository.findAdminByUserName(param);
     }
 }

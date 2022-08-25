@@ -15,23 +15,23 @@ import java.util.List;
 public class Treatments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long treatment_id;
+    private Long treatmentId;
 
     private String sickness;
 
-    private String sickness_desc;
+    private String sicknessDesc;
 
-    private String sickness_handling;
+    private String sicknessHandling;
 
     private Instant createTime;
 
     // @OneToMany(targetEntity = Medication.class, cascade = CascadeType.ALL)
-    // @JoinColumn(name = "treatments_id", referencedColumnName = "treatment_id")
+    // @JoinColumn(name = "treatmentsId", referencedColumnName = "treatmentId")
     // private List<Medication> medications;
 
     @ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "medication_list", 
-    joinColumns = @JoinColumn(name = "treatment_id"), 
-    inverseJoinColumns = @JoinColumn(name = "medication_id"))
+	@JoinTable(name = "medicationList",
+    joinColumns = @JoinColumn(name = "treatmentId"),
+    inverseJoinColumns = @JoinColumn(name = "medicationId"))
 	private List<Medication> medications;
 }

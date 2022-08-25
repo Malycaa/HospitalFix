@@ -9,6 +9,6 @@ import com.example.miniprojecthospitalkelompok2.entity.Medication;
 
 @Repository
 public interface MedicationRepository extends JpaRepository<Medication, Long>{
-    @Query(value = "SELECT * FROM medication_table m WHERE m.medication_name LIKE :param%", nativeQuery = true)
+    @Query(value = "SELECT * FROM medication_table m WHERE m.medicationName LIKE :param%", nativeQuery = true)
     List<Medication> findMedicationByName(String param);
 }

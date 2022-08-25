@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class MedicationTreatmentReq {
-    private Long medication_id;
+    private Long medicationId;
 }

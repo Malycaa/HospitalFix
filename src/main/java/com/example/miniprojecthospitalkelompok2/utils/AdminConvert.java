@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AdminConvert {
     private AdminRequest request;
-    private String username;
+    private String userName;
     private String role;
 
-    public AdminConvert(String username, String role) {
-        this.username = username;
+    public AdminConvert(String userName, String role) {
+        this.userName = userName;
         this.role = role;
     }
 }

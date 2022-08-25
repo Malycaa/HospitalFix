@@ -8,15 +8,15 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class PatientRequest {
-    private Long patient_id;
+    private Long patientId;
 
-    private Long user_id;
+    private Long userId;
 
-    private String patient_name;
+    private String patientName;
 
-    private String birth_place;
+    private String birthPlace;
 
-    private String birth_date;
+    private String birthDate;
 
     private String address;
 

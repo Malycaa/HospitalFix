@@ -12,9 +12,9 @@ import javax.persistence.*;
 public class Medication {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long medication_id;
+    private Long medicationId;
 
-    private String medication_name;
+    private String medicationName;
 
-    private String medication_dose;
+    private String medicationDose;
 }

@@ -10,7 +10,7 @@ import com.example.miniprojecthospitalkelompok2.utils.AdminConvert;
 
 @Repository
 public interface AdminRepository extends JpaRepository<Users, Long> {
-    @Query(value = "SELECT * FROM user_table u WHERE u.username"
-            + " LIKE :#{#param.username}% AND u.role = :#{#param.role}", nativeQuery = true)
-    List<Users> findAdminByUsername(@Param("param") AdminConvert param);
+    @Query(value = "SELECT * FROM user_table u WHERE u.userName"
+            + " LIKE :#{#param.userName}% AND u.role = :#{#param.role}", nativeQuery = true)
+    List<Users> findAdminByUserName(@Param("param") AdminConvert param);
 }

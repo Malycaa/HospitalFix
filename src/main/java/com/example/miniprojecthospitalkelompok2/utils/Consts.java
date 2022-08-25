@@ -16,8 +16,8 @@ import com.example.miniprojecthospitalkelompok2.payload.request.TreatmentRequest
 public class Consts {
     public static Users toUser(AdminRequest request) {
         Users model = new Users();
-        if (request.getUser_id() != null) {
-            model.setUser_id(request.getUser_id());
+        if (request.getUserId() != null) {
+            model.setUserId(request.getUserId());
         }
         if (request.getRole() != null && request.getRole() != "") {
             model.setRole(request.getRole());
@@ -25,8 +25,8 @@ public class Consts {
         if (request.getPassword() != null && request.getPassword() != "") {
             model.setPassword(request.getPassword());
         }
-        model.setFull_name(request.getFull_name());
-        model.setUsername(request.getUsername());
+        model.setFullName(request.getFullName());
+        model.setUserName(request.getUserName());
         model.setAddress(request.getAddress());
         model.setGender(request.getGender());
         model.setEmail(request.getEmail());
@@ -37,13 +37,13 @@ public class Consts {
 
     public static Patients patientWithoutList(PatientRequest req, Users user) {
         Patients model = new Patients();
-        if (req.getPatient_id() != null) {
-            model.setPatient_id(req.getPatient_id());
+        if (req.getPatientId() != null) {
+            model.setPatientId(req.getPatientId());
         }
 
-        model.setPatient_name(req.getPatient_name());
-        model.setBirth_place(req.getBirth_place());
-        model.setBirth_date(req.getBirth_date());
+        model.setPatientName(req.getPatientName());
+        model.setBirthPlace(req.getBirthPlace());
+        model.setBirthDate(req.getBirthDate());
         model.setAddress(req.getAddress());
         model.setGender(req.getGender());
         model.setComplaints(req.getComplaints());
@@ -55,19 +55,19 @@ public class Consts {
     public static Treatments toTreatment(TreatmentRequest req) {
         List<Medication> list = new ArrayList<Medication>();
         Treatments model = new Treatments();
-        if (req.getTreatment_id() != null) {
-            model.setTreatment_id(req.getTreatment_id());
+        if (req.getTreatmentId() != null) {
+            model.setTreatmentId(req.getTreatmentId());
         }
 
         req.getMedications().forEach((i) -> {
             Medication newModel = new Medication();
-            newModel.setMedication_id(i.getMedication_id());
+            newModel.setMedicationId(i.getMedicationId());
             list.add(newModel);
         });
 
         model.setSickness(req.getSickness());
-        model.setSickness_desc(req.getSickness_desc());
-        model.setSickness_handling(req.getSickness_handling());
+        model.setSicknessDesc(req.getSicknessDesc());
+        model.setSicknessHandling(req.getSicknessHandling());
         model.setCreateTime(Instant.now());
         model.setMedications(list);
         return model;
@@ -75,12 +75,12 @@ public class Consts {
 
     public static Medication toMedication(MedicationRequest req) {
         Medication model = new Medication();
-        if (req.getMedication_id() != null) {
-            model.setMedication_id(req.getMedication_id());
+        if (req.getMedicationId() != null) {
+            model.setMedicationId(req.getMedicationId());
         }
 
-        model.setMedication_name(req.getMedication_name());
-        model.setMedication_dose(req.getMedication_dose());
+        model.setMedicationName(req.getMedicationName());
+        model.setMedicationDose(req.getMedicationDose());
         return model;
     }
 }

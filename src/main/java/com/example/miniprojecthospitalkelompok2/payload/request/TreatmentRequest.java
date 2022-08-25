@@ -8,15 +8,15 @@ import lombok.Data;
 
 @Data
 public class TreatmentRequest {
-    private Long treatment_id;
+    private Long treatmentId;
 
-    private Long patient_id;
+    private Long patientId;
 
     private String sickness;
 
-    private String sickness_desc;
+    private String sicknessDesc;
 
-    private String sickness_handling;
+    private String sicknessHandling;
 
     private Instant createTime;
 

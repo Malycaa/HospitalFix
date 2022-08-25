@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class PatientInquiry {
-    private String patient_name;
-    private Long user_id;
+    private String patientName;
+    private Long userId;
 }

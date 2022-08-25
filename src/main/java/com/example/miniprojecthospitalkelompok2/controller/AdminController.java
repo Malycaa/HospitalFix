@@ -33,8 +33,8 @@ public class AdminController {
     @PostMapping("/addAdmin")
     public ResponseEntity<?> addAdmin(@Valid @RequestBody IgnoreRequest.AddAdmin request) {
         try {
-            if (userRepository.existsByUsername(request.getUsername())) {
-                return CommonResponse.fail("Username not available");
+            if (userRepository.existsByUserName(request.getUserName())) {
+                return CommonResponse.fail("UserName not available");
             }
             if (userRepository.existsByEmail(request.getEmail())) {
                 return CommonResponse.fail("Email not available");
@@ -51,8 +51,8 @@ public class AdminController {
     @PostMapping("/addDoctor")
     public ResponseEntity<?> addDoctor(@Valid @RequestBody IgnoreRequest.AddAdmin request) {
         try {
-            if (userRepository.existsByUsername(request.getUsername())) {
-                return CommonResponse.fail("Username not available");
+            if (userRepository.existsByUserName(request.getUserName())) {
+                return CommonResponse.fail("UserName not available");
             }
             if (userRepository.existsByEmail(request.getEmail())) {
                 return CommonResponse.fail("Email not available");
@@ -91,15 +91,15 @@ public class AdminController {
     @PutMapping("/updateAdmin")
     public ResponseEntity<Object> updateAdmin(@RequestBody IgnoreRequest.EditAdmin req) {
         try {
-            if (userRepository.existsByUsername(req.getUsername())) {
-                return CommonResponse.fail("Username not available");
+            if (userRepository.existsByUserName(req.getUserName())) {
+                return CommonResponse.fail("UserName not available");
             }
             if (userRepository.existsByEmail(req.getEmail())) {
                 return CommonResponse.fail("Email not available");
             }
             req.setRole(USER_ENUM.USER_TYPE_ADMIN.name());
             userRepository.save(Consts.toUser(req));
-            Users user = userRepository.findById(req.getUser_id()).orElse(null);
+            Users user = userRepository.findById(req.getUserId()).orElse(null);
             return CommonResponse.common("OK", HttpStatus.OK, user);
         } catch (Exception e) {
             return CommonResponse.fail(e.getMessage());
@@ -110,35 +110,35 @@ public class AdminController {
     @PutMapping("/updateDoctor")
     public ResponseEntity<Object> updateDoctor(@RequestBody IgnoreRequest.EditAdmin req) {
         try {
-            if (userRepository.existsByUsername(req.getUsername())) {
-                return CommonResponse.fail("Username not available");
+            if (userRepository.existsByUserName(req.getUserName())) {
+                return CommonResponse.fail("UserName not available");
             }
             if (userRepository.existsByEmail(req.getEmail())) {
                 return CommonResponse.fail("Email not available");
             }
             req.setRole(USER_ENUM.USER_TYPE_DOCTOR.name());
             userRepository.save(Consts.toUser(req));
-            Users user = userRepository.findById(req.getUser_id()).orElse(null);
+            Users user = userRepository.findById(req.getUserId()).orElse(null);
             return CommonResponse.common("OK", HttpStatus.OK, user);
         } catch (Exception e) {
             return CommonResponse.fail(e.getMessage());
         }
     }
 
-    @DeleteMapping("/deleteUserById/{user_id}")
-    public ResponseEntity<Object> deleteUserById(@PathVariable Long user_id) {
+    @DeleteMapping("/deleteUserById/{userId}")
+    public ResponseEntity<Object> deleteUserById(@PathVariable Long userId) {
         try {
-            userRepository.deleteById(user_id);
+            userRepository.deleteById(userId);
             return CommonResponse.success("User Deleted");
         } catch (Exception e) {
             return CommonResponse.fail(e.getMessage());
         }
     }
 
-    @GetMapping("/getUserById/{user_id}")
-    public ResponseEntity<?> getUserById(@PathVariable Long user_id) {
+    @GetMapping("/getUserById/{userId}")
+    public ResponseEntity<?> getUserById(@PathVariable Long userId) {
         try {
-            Users user = userRepository.findById(user_id).orElse(null);
+            Users user = userRepository.findById(userId).orElse(null);
             return CommonResponse.common("OK", HttpStatus.OK, user);
         } catch (Exception e) {
             return CommonResponse.fail(e.getMessage());

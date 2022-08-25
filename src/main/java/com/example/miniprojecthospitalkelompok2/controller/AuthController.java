@@ -21,7 +21,7 @@ public class AuthController {
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         try {
-            Users user = userRepository.findByUsername(loginRequest.getUsername()).orElse(null);
+            Users user = userRepository.findByUserName(loginRequest.getUserName()).orElse(null);
             if (user == null) {
                 return CommonResponse.fail("User not found");
             }

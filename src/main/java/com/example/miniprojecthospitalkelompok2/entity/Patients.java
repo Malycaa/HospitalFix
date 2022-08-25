@@ -18,13 +18,13 @@ public class Patients implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long patient_id;
+    private Long patientId;
 
-    private String patient_name;
+    private String patientName;
 
-    private String birth_place;
+    private String birthPlace;
 
-    private String birth_date;
+    private String birthDate;
 
     private String address;
 
@@ -35,10 +35,10 @@ public class Patients implements Serializable {
     private Instant registrationDate;
 
     @OneToMany(targetEntity = Treatments.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "patients_id", referencedColumnName = "patient_id")
+    @JoinColumn(name = "patientsId", referencedColumnName = "patientId")
     private List<Treatments> treatments;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "userId")
     private Users users;
 }

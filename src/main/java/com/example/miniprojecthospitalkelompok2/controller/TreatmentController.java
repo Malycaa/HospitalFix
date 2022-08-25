@@ -31,7 +31,7 @@ public class TreatmentController {
     @PostMapping("/addTreatment")
     public ResponseEntity<?> addTreatment(@Valid @RequestBody IgnoreRequest.AddTreatment request) {
         try {
-            Patients pat = patRepository.findById(request.getPatient_id()).orElse(null);
+            Patients pat = patRepository.findById(request.getPatientId()).orElse(null);
             pat.getTreatments().add(Consts.toTreatment(request));
             patRepository.save(pat);
             return CommonResponse.success("Treatment Registered");

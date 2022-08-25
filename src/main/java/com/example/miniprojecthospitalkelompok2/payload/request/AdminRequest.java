@@ -11,14 +11,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AdminRequest {
 
-    private Long user_id;
+    private Long userId;
 
     @NotBlank
     @Size(min = 3, max = 20)
-    private String username;
+    private String userName;
 
     @NotBlank
-    private String full_name;
+    private String fullName;
 
     @NotBlank
     private String age;

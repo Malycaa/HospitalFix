@@ -3,9 +3,9 @@ import lombok.Data;
 
 @Data
 public class MedicationRequest {
-    private Long medication_id;
+    private Long medicationId;
 
-    private String medication_name;
+    private String medicationName;
 
-    private String medication_dose;
+    private String medicationDose;
 }

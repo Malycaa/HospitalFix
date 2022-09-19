@@ -18,81 +18,40 @@ import com.example.miniprojecthospitalkelompok2.repository.UserRepository;
 import com.example.miniprojecthospitalkelompok2.service.PatientService;
 import com.example.miniprojecthospitalkelompok2.utils.Consts;
 
-@CrossOrigin(origins = "https://hospitalcenter-id.herokuapp.com")
+//@CrossOrigin(origins = "https://hospitalcenter-id.herokuapp.com")
 @RestController
 @RequestMapping("/api/patient")
 public class PatientController {
-    
-    @Autowired
-    PatientRepository patientRepository;
-
-    @Autowired
     PatientService patientService;
 
-    @Autowired
-    UserRepository userRepository;
 
+    //1
     @PostMapping("/addPatient")
     public ResponseEntity<?> addPatient(@Valid @RequestBody IgnoreRequest.AddPatient request) {
-        try {
-            Users user = userRepository.findById(request.getUserId()).orElse(null);
-            patientRepository.save(Consts.patientWithoutList(request, user));
-            return CommonResponse.success("Admin Registered");
-        } catch (Exception e) {
-            return CommonResponse.fail(e.getMessage());
-        }
+        return patientService.addPatient(request);
     }
 
     @PutMapping("/editPatient")
     public ResponseEntity<?> editPatient(@Valid @RequestBody IgnoreRequest.EditPatient request) {
-        try {
-            Users user = userRepository.findById(request.getUserId()).orElse(null);
-            patientRepository.save(Consts.patientWithoutList(request, user));
-            return CommonResponse.success("Admin Registered");
-        } catch (Exception e) {
-            return CommonResponse.fail(e.getMessage());
-        }
+    return patientService.editPatient(request);
     }
-
 
     @PostMapping("/inquiryPatient")
     public ResponseEntity<?> inquiryPatient(@RequestBody PatientInquiry request) {
-        try {
-            List<Patients> lists = patientService.inquiryPatient(request);
-            return CommonResponse.common("OK", HttpStatus.OK, lists);
-        } catch (Exception e) {
-            return CommonResponse.fail(e.getMessage());
-        }
+     return patientService.inquiryPatient(request);
     }
-
 
     @PostMapping("/inquiryPatientByAdmin")
-    public ResponseEntity<?> inquiryPatientByAdmin(@RequestBody InquiryName request) {
-        try {
-            List<Patients> lists = patientService.inquiryPatientByAdmin(request.getValue());
-            return CommonResponse.common("OK", HttpStatus.OK, lists);
-        } catch (Exception e) {
-            return CommonResponse.fail(e.getMessage());
-        }
+    public ResponseEntity<?> inquiryPatientByAdmin(@RequestBody InquiryName param) {
+        return patientService.inquiryPatientByAdmin(param);
     }
-
 
     @DeleteMapping("/deletePatientById/{patientId}")
     public ResponseEntity<Object> deletePatientById(@PathVariable Long patientId) {
-        try {
-            patientRepository.deleteById(patientId);
-            return CommonResponse.success("Patient Deleted");
-        } catch (Exception e) {
-            return CommonResponse.fail(e.getMessage());
-        }
+        return patientService.deletePatientById(patientId);
     }
     @GetMapping("/getPatientById/{patientId}")
     public ResponseEntity<?> getPatientById(@PathVariable Long patientId) {
-        try {
-            Patients patients = patientRepository.findById(patientId).orElse(null);
-            return CommonResponse.common("OK", HttpStatus.OK, patients);
-        } catch (Exception e) {
-            return CommonResponse.fail(e.getMessage());
-        }
+        return patientService.getPatientById(patientId);
     }
 }

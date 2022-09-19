@@ -2,23 +2,26 @@ package com.example.miniprojecthospitalkelompok2.service;
 
 import java.util.List;
 
+import com.example.miniprojecthospitalkelompok2.payload.request.InquiryName;
+import com.example.miniprojecthospitalkelompok2.payload.request.PatientRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.miniprojecthospitalkelompok2.entity.Patients;
 import com.example.miniprojecthospitalkelompok2.payload.request.PatientInquiry;
 import com.example.miniprojecthospitalkelompok2.repository.PatientRepository;
+public interface PatientService {
 
-@Service
-public class PatientService {
-    @Autowired
-    PatientRepository repository;
+    ResponseEntity<?> inquiryPatient(PatientInquiry request);
 
-    public List<Patients> inquiryPatient(PatientInquiry param){
-        return repository.inquiryPatient(param);
-    }
+    ResponseEntity<?> inquiryPatientByAdmin(InquiryName param);
 
-    public List<Patients> inquiryPatientByAdmin(String param){
-        return repository.inquiryPatientByAdmin(param);
-    }
+    ResponseEntity<?> addPatient(PatientRequest patientRequest);
+
+    ResponseEntity<?> editPatient(PatientRequest patientRequest);
+
+    ResponseEntity<Object> deletePatientById(Long patientId);
+
+    ResponseEntity<?> getPatientById (Long patientId);
 }

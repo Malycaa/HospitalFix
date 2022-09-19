@@ -3,6 +3,8 @@ import com.example.miniprojecthospitalkelompok2.entity.Users;
 import com.example.miniprojecthospitalkelompok2.payload.request.LoginRequest;
 import com.example.miniprojecthospitalkelompok2.payload.response.CommonResponse;
 import com.example.miniprojecthospitalkelompok2.repository.UserRepository;
+import com.example.miniprojecthospitalkelompok2.service.LoginService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,25 +14,15 @@ import javax.validation.Valid;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    @Autowired
-    UserRepository userRepository;
+    //3
 
+    private final LoginService loginService;
     @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-        try {
-            Users user = userRepository.findByUserName(loginRequest.getUserName()).orElse(null);
-            if (user == null) {
-                return CommonResponse.fail("User not found");
-            }
-            if (!loginRequest.getPassword().equals(user.getPassword())) {
-                return CommonResponse.fail("Password do not match");
-            }
-            return CommonResponse.common("OK", HttpStatus.OK, user);
-        } catch (Exception e) {
-            return CommonResponse.fail(e.getMessage());
-        }
+    public ResponseEntity<?> loginUser(@Valid @RequestBody LoginRequest loginRequest) {
+        return loginService.login(loginRequest);
     }
 }
